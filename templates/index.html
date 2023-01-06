@@ -209,7 +209,7 @@
 
     <div style='height: 100vh; display: flex; justify-content: center' id='splashing'>
         <div
-            style="height: 100vh; z-index: 100; width: 100vw; display: flex; alignItems: center; justify-content: center">
+            style="height: 100vh; z-index: 100; width: 100vw; display: flex; align-Items: center; justify-content: center">
             <div style='height: 100vh; z-index: 100; width: 100vw; background: #36aeeb'></div>
             <div style='display: flex; flex-direction: column; justify-content: center' id='circleWrapper'>
                 <div style='height: 100vh; width: auto; background: #36aeeb; z-index: 100'></div>
@@ -352,20 +352,23 @@
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <main class="main_full">
                 <div class="container">
-                    <div class="panel">
-                        <div class="button_outer">
-                            <div class="btn_upload">
-                                <input type="file" id="upload_file" name="">
-                                Upload Image
+                    <form action = "{{ url_for('home') }}" method = "post" enctype="multipart/form-data"></form>
+                        <div class="panel">
+                            <div class="button_outer">
+                                <div class="btn_upload">
+                                        <input type="file" id="upload_file" name="test-img" onchange="this.form.submit()">
+                                        Upload Image
+                                    </form>
+                                </div>
+                                <div class="processing_bar"></div>
+                                <div class="success_box"></div>
                             </div>
-                            <div class="processing_bar"></div>
-                            <div class="success_box"></div>
                         </div>
-                    </div>
-                    <div class="error_msg"></div>
-                    <div class="uploaded_file_view" id="uploaded_view">
-                        <span class="file_remove">X</span>
-                    </div>
+                        <div class="error_msg"></div>
+                        <div class="uploaded_file_view" id="uploaded_view">
+                            <span class="file_remove">X</span>
+                        </div>
+                    </form>
                 </div>
             </main>
         </div>
