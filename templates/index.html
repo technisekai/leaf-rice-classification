@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href='/templates/assets/img/logo.jpeg'>
+    <link rel="icon" href="{{ url_for('static', filename='assets/img/logo.jpeg') }}">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css">
     <title>Landing Page</title>
     <style>
@@ -238,7 +238,7 @@
                         d="M447.216 670.822l89.44-44.72v-89.45l-89.44-44.72v178.89zM447.216 402.492l89.44-44.721v-89.443l-89.44-44.722">
                     </path>
                 </svg> -->
-                    <img src="/templates/assets/img/logo.jpeg" class="h-8 w-8 rounded-full mr-2" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="h-8 w-8 rounded-full mr-2" alt="">
                     <span class="font-semibold text-xl tracking-tight">Kelompok 5</span>
                 </div>
 
@@ -276,7 +276,7 @@
             </nav>
         </div>
         <div class="bg-no-repeat bg-center bg-cover w-screen h-[700px]"
-            style="background-image: url('../templates/assets/img/bg.png');">
+            style="background-image: url('{{ url_for('static', filename='assets/img/bg.png') }}');">
             <div class="flex flex-col  h-[700px] justify-center items-center md:px-0 px-5">
                 <h1 class="md:text-8xl  text-4xl text-[#265A1F] font-bold text-center"> Now we can build Agriculture,
                     together.</h1>
@@ -292,19 +292,19 @@
                 training</h1>
             <div class="h-72 flex items-center flex-wrap justify-center gap-10">
                 <div class="flex flex-col justify-center ">
-                    <img src="/templates/assets/img/logo.jpeg" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
                     <h1 class="md:text-xl text-lg text-[#265A1F] mt-2">Penyakit Pada Padi</h1>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <img src="/templates/assets/img/logo.jpeg" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
                     <h1 class="md:text-xl text-lg text-[#265A1F] mt-2">Penyakit Pada Padi</h1>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <img src="/templates/assets/img/logo.jpeg" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
                     <h1 class="md:text-xl text-lg text-[#265A1F] mt-2">Penyakit Pada Padi</h1>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <img src="/templates/assets/img/logo.jpeg" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
                     <h1 class="md:text-xl text-lg text-[#265A1F] mt-2">Penyakit Pada Padi</h1>
                 </div>
             </div>
@@ -314,7 +314,7 @@
                 result</h1>
             <div class="grid grid-cols-12">
                 <div class="col-span-4 flex items-center">
-                    <img src="/templates/assets/img/logo.jpeg" class="w-full rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="w-full rounded-lg" alt="">
                 </div>
                 <div class="md:col-span-6 col-span-8 h-full flex flex-col justify-center  md:x  px-10">
                     <h1 class="md:text-7xl text-xl font-bold text-start text-[#47BA47]">Lorem Ipsum</h1>
@@ -331,12 +331,12 @@
                         of the printing and typesetting industry.</h1>
                 </div>
                 <div class="md:col-span-6 col-span-4 flex justify-end items-center">
-                    <img src="/templates/assets/img/logo.jpeg" class="w-3/4 rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="w-3/4 rounded-lg" alt="">
                 </div>
             </div>
             <div class="grid grid-cols-12 ">
                 <div class="col-span-4 w-full ">
-                    <img src="/templates/assets/img/logo.jpeg" class="w-full rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="w-full rounded-lg" alt="">
                 </div>
                 <div class="md:col-span-6 col-span-8 h-full flex flex-col justify-center  md:x  px-10">
                     <h1 class="md:text-7xl text-xl font-bold text-start text-[#47BA47]">Lorem Ipsum</h1>
@@ -396,7 +396,7 @@
                                     <div class="flex flex-col">
                                         <a href="#" class="mx-auto">
                                             <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
-                                                src="/templates/assets/img/Satria2.png">
+                                                src="{{ url_for('static', filename='assets/img/Satria2.png') }}">
                                         </a>
                                         <div class="text-center mt-6">
 
@@ -430,7 +430,7 @@
                                     <div class="flex flex-col">
                                         <a href="#" class="mx-auto">
                                             <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
-                                                src="/templates/assets/img/Widi.jpeg">
+                                                src="{{ url_for('static', filename='assets/img/Widi.jpeg') }}">
                                         </a>
                                         <div class="text-center mt-6">
 
@@ -464,7 +464,7 @@
                                     <div class="flex flex-col">
                                         <a href="#" class="mx-auto">
                                             <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
-                                                src="/templates/assets/img/iqbal.jpg">
+                                                src="{{ url_for('static', filename='assets/img/iqbal.jpg') }}">
                                         </a>
                                         <div class="text-center mt-6">
 
