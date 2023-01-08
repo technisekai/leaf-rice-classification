@@ -356,6 +356,7 @@
                 </div>
             </main>
             {% if result %}
+                <!-- MODIFY HERE IQBAL -->
                 <!-- image -->
                 <img src="{{ result['path_img'] }}">
                 <!-- class data-->
@@ -365,6 +366,7 @@
                 <!-- explain -->
                 {{ result['desc']['explain'] }} <br>
                 <!-- solution -->
+                <!-- BENTUKNYA LIST JADI PAKE FOR JANGAN DIRUBAH -->
                 {% for i in result['desc']['solution'] %}
                     - {{ i }} <br>
                 {% endfor %}
