@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{{ url_for('static', filename='assets/img/logo.jpeg') }}">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css">
+    <title>Landing Page</title>
+    <style>
+        .splash-screen {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00c6f1;
+            font-weight: 100;
+            font-size: 6em;
+        }
+
+        #TransparentCircle {
+            -webkit-transition: all 1.44s ease;
+            -moz-transition: all 1.44s ease;
+            -o-transition: all 1.44s ease;
+            transition: all 1.44s ease;
+            transform: scale(1.02);
+        }
+
+        .ball {
+            z-index: 200;
+            width: 50px;
+            height: 50px;
+            margin: 0 0 0 -25px;
+            background-color: #fff;
+            border-radius: 100%;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            animation: ball 1s infinite;
+        }
+
+        @keyframes ball {
+            0% {
+                top: 20%;
+            }
+
+            5% {
+                top: 21%;
+            }
+
+            10% {
+                top: 23%;
+            }
+
+            15% {
+                top: 26%;
+            }
+
+            20% {
+                top: 27%;
+            }
+
+            25% {
+                top: 29%;
+            }
+
+            30% {
+                top: 32%;
+            }
+
+            35% {
+                top: 36%;
+            }
+
+            40% {
+                top: 42%;
+                height: 46px;
+                width: 53px;
+                margin-left: -27px;
+            }
+
+            45% {
+                top: 46%;
+                height: 40px;
+                width: 59px;
+                margin-left: -30px;
+            }
+
+            50% {
+                top: 50%;
+                height: 24px;
+                width: 67px;
+                margin-left: -36px;
+            }
+
+            55% {
+                top: 46%;
+                height: 38px;
+                width: 57px;
+                margin-left: -29px;
+            }
+
+            60% {
+                top: 42%;
+                height: 48px;
+                width: 51px;
+                margin-left: -26px;
+            }
+
+            65% {
+                top: 36%;
+                height: 50px;
+                width: 50px;
+            }
+
+            70% {
+                top: 32%;
+            }
+
+            75% {
+                top: 29%;
+            }
+
+            80% {
+                top: 27%;
+            }
+
+            85% {
+                top: 26%;
+            }
+
+            90% {
+                top: 23%;
+            }
+
+            95% {
+                top: 21%;
+            }
+
+            100% {
+                top: 20%;
+            }
+        }
+    </style>
+    <style>
+        @media (max-width: 767px) {
+            .navicon {
+                width: 1.125em;
+                height: .125em;
+            }
+
+            .navicon::before,
+            .navicon::after {
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transition: all .2s ease-out;
+                content: '';
+                background: #3D4852;
+            }
+
+            .navicon::before {
+                top: 5px;
+            }
+
+            .navicon::after {
+                top: -5px;
+            }
+
+            .menu-btn:not(:checked)~.menu {
+                display: none;
+            }
+
+            .menu-btn:checked~.menu {
+                display: block;
+            }
+
+            .menu-btn:checked~.menu-icon .navicon {
+                background: transparent;
+            }
+
+            .menu-btn:checked~.menu-icon .navicon::before {
+                transform: rotate(-45deg);
+            }
+
+            .menu-btn:checked~.menu-icon .navicon::after {
+                transform: rotate(45deg);
+            }
+
+            .menu-btn:checked~.menu-icon .navicon::before,
+            .menu-btn:checked~.menu-icon .navicon::after {
+                top: 0;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <!-- inline CSS :/ -->
+    <div style='display: flex; align-items: center; justify-content: center; background: #36aeeb; z-index: 100;'>
+        <div class="ball" id='Ball'></div>
+    </div>
+
+    <div style='height: 100vh; display: flex; justify-content: center' id='splashing'>
+        <div
+            style="height: 100vh; z-index: 100; width: 100vw; display: flex; align-Items: center; justify-content: center">
+            <div style='height: 100vh; z-index: 100; width: 100vw; background: #36aeeb'></div>
+            <div style='display: flex; flex-direction: column; justify-content: center' id='circleWrapper'>
+                <div style='height: 100vh; width: auto; background: #36aeeb; z-index: 100'></div>
+                <object type="image/svg+xml" id='TransparentCircle' style='height: 0px; width: auto; z-index: 100'
+                    data="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB3aWR0aD0iMzAwMHB4IiBoZWlnaHQ9IjMwMDBweCIgdmlld0JveD0iMCAwIDYwMCA2MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+IDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDUuMiAoNDM1MTQpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPiA8dGl0bGU+Q29tYmluZWQgU2hhcGU8L3RpdGxlPiA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4gPGRlZnM+PC9kZWZzPiA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4gPGcgaWQ9IkFydGJvYXJkLUNvcHktNyIgZmlsbD0iIzM2QUVFQSI+IDxwYXRoIGQ9Ik0wLDAgTDYwMCwwIEw2MDAsNjAwIEwwLDYwMCBMMCwwIFogTTMwMC41LDUxNSBDNDE4Ljk2NTA3OSw1MTUgNTE1LDQxOC45NjUwNzkgNTE1LDMwMC41IEM1MTUsMTgyLjAzNDkyMSA0MTguOTY1MDc5LDg2IDMwMC41LDg2IEMxODIuMDM0OTIxLDg2IDg2LDE4Mi4wMzQ5MjEgODYsMzAwLjUgQzg2LDQxOC45NjUwNzkgMTgyLjAzNDkyMSw1MTUgMzAwLjUsNTE1IFoiIGlkPSJDb21iaW5lZC1TaGFwZSI+PC9wYXRoPiA8L2c+IDwvZz4gPC9zdmc+"
+                    class="circle">
+                </object>
+                <div style='height: 100vh; width: auto; background: #36aeeb; z-index: 100'></div>
+            </div>
+            <div style='height: 100vh; width: 100%; background: #36aeeb; z-index: 100'></div>
+        </div>
+    </div>
+
+    <div class=''>
+        <!-- navbar -->
+        <div class="sticky z-20  top-0">
+            <nav class="nav flex flex-wrap items-center justify-between px-4">
+                <div class="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
+                    <!-- <svg class="fill-current h-8 mr-2 w-8" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-miterlimit="1.5" clip-rule="evenodd" viewBox="0 0 716 895">
+                    <path d="M357.776 0l357.77 178.885v536.657l-357.77 178.89L0 715.542V178.885"></path>
+                    <path class="text-white fill-current"
+                        d="M357.776 804.982l268.32-134.16v-178.89l-89.44-44.72 89.44-44.72V223.606L357.776 89.442v626.1l-178.89-89.44V178.885l-89.443 44.721v447.216l268.333 134.16z">
+                    </path>
+                    <path
+                        d="M447.216 670.822l89.44-44.72v-89.45l-89.44-44.72v178.89zM447.216 402.492l89.44-44.721v-89.443l-89.44-44.722">
+                    </path>
+                </svg> -->
+                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="h-8 w-8 rounded-full mr-2" alt="">
+                    <span class="font-semibold text-xl tracking-tight">Kelompok 5</span>
+                </div>
+
+                <input class="menu-btn hidden" type="checkbox" id="menu-btn">
+                <label class="menu-icon block cursor-pointer md:hidden px-2 py-4 relative select-none" for="menu-btn">
+                    <span class="navicon bg-grey-darkest flex items-center relative"></span>
+                </label>
+
+                <ul class="menu border-b md:border-none flex justify-end list-reset m-0 w-full md:w-auto">
+                    <li class="border-t md:border-none">
+                        <a href="/"
+                            class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker font-bold">Home</a>
+                    </li>
+
+                    <li class="border-t md:border-none">
+                        <a href="#dataset"
+                            class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Dataset</a>
+                    </li>
+
+                    <li class="border-t md:border-none">
+                        <a href="#result"
+                            class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Result</a>
+                    </li>
+                    <li class="border-t md:border-none">
+                        <a href="#upload"
+                            class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Upload
+                            Image</a>
+                    </li>
+                    <li class="border-t md:border-none">
+                        <a href="#team"
+                            class="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker">Team</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="bg-no-repeat bg-center bg-cover w-screen h-[700px]"
+            style="background-image: url('{{ url_for('static', filename='assets/img/bg.png') }}');">
+            <div class="flex flex-col  h-[700px] justify-center items-center md:px-0 px-5">
+                <h1 class="md:text-8xl  text-4xl text-[#265A1F] font-bold text-center"> Now we can build Agriculture,
+                    together.</h1>
+                <h1 class="text-sm text-[#265A1F] mb-10 mt-4">AgriCastle is helping to revolutionize the agricultural
+                    system by connecting motivated farmers and optimizing agro-businesses.</h1>
+                <a href="#upload" class="md:px-6 md:py-3 py-2 px-4 rounded-xl bg-[#265A1F] text-white text-xl font-bold">Get
+                    statered</a>
+            </div>
+        </div>
+        <div id="dataset" class="bg-[#47BA47]/30  h-96">
+            <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10"> Using EfficientnetB3 with more
+                than 1000+ data for
+                training</h1>
+            <div class="h-72 flex items-center flex-wrap justify-center gap-10">
+                <div class="flex flex-col justify-center ">
+                    <img src="{{ url_for('static', filename='img/sample_data/brown_spot.jpg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <h1 class="md:text-xl text-lg text-[#265A1F] mt-2 text-center">Penyakit Bercak Coklat</h1>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <img src="{{ url_for('static', filename='img/sample_data/sehat.jpg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <h1 class="md:text-xl text-lg text-[#265A1F] mt-2 text-center">Sehat</h1>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <img src="{{ url_for('static', filename='img/sample_data/hispa.jpg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <h1 class="md:text-xl text-lg text-[#265A1F] mt-2 text-center">Penyakit Hispa</h1>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <img src="{{ url_for('static', filename='img/sample_data/leaf_blast.jpg') }}" class="md:h-36 md:w-36 w-16 h-16 rounded-lg" alt="">
+                    <h1 class="md:text-xl text-lg text-[#265A1F] mt-2 text-center">Penyakit Leaf Blast</h1>
+                </div>
+            </div>
+        </div>
+        <div id="result" class="bg-white py-20">
+            <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] mb-10"> Efficient3V have incredible
+                result</h1>
+            <div class="grid grid-cols-12">
+                <div class="col-span-4 flex items-center">
+                    <img src="{{ url_for('static', filename='img/result/NF_D0.2.jpg') }}" class="w-full rounded-lg" alt="">
+                </div>
+                <div class="md:col-span-6 col-span-8 h-full flex flex-col justify-center  md:x  px-10">
+                    <h1 class="md:text-7xl text-xl font-bold text-start text-[#47BA47]">More than 80% accuracy</h1>
+                    <h1 class="md:text-2xl text-base py-4 text-start text-[#265A1F] font-semibold">EfficientnetB3 get more than 80% accuracy in training data and testing data.</h1>
+                </div>
+            </div>
+        </div>
+        <div id="upload" class="bg-[#47BA47]/30 h-auto">
+            <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10">Let’s try</h1>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <main class="main_full">
+                <div class="container">
+                    <form action = "{{ url_for('home') }}" method = "post" enctype="multipart/form-data">
+                        <div class="panel">
+                            <div class="button_outer">
+                                <div class="btn_upload">
+                                        <input type="file" id="upload_file" name="test-img" onchange="this.form.submit()">
+                                        Upload Image
+                                    </form>
+                                </div>
+                                <div class="processing_bar"></div>
+                                <div class="success_box"></div>
+                            </div>
+                        </div>
+                        <div class="error_msg"></div>
+                        <div class="uploaded_file_view" id="uploaded_view">
+                            <span class="file_remove">X</span>
+                        </div>
+                    </form>
+                </div>
+            </main>
+            {% if result %}
+    <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10">Result</h1>
+    <!-- image -->
+    <div class="flex justify-between px-20 pb-20">
+        <img src="{{ result['path_img'] }}" class="w-96 h-96 rounded-xl">
+        <!-- class data-->
+        <div class="px-10 flex flex-col justify-center">
+            <div class="">
+                <h1 class="text-[#265A1F] font-semibold text-lg">Disiase : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                    result['class'] }}</h1>
+                </div>
+                <!-- score -->
+                <h1 class="text-[#265A1F] font-semibold text-lg">Score : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                    result['score'] }}</h1>
+                    <!-- explain -->
+                    <h1 class="text-[#265A1F] font-semibold text-lg">Description : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                        result['desc']['explain'] }}</h1>
+                        <!-- solution -->
+                        <h1 class="text-[#265A1F] font-semibold text-lg">Description : <h1 class="font-normal text-[#265A1F]"></h1> {%
+                            for i in result['desc']['solution'] %}
+                            - {{ i }} <br>
+                            {% endfor %}
+                            {% endif %}</h1>
+                            
+                        </div>
+                    </div>
+    </div>
+        <div id="team" class="">
+            <div class="flex items-center justify-center min-h-screen bg-white py-10">
+                <div class="flex flex-col">
+
+
+                    <div class="flex flex-col">
+
+                        <div class="container max-w-7xl px-4">
+                            <div class="flex flex-wrap justify-center text-center mb-24">
+                                <div class="w-full lg:w-6/12 px-4">
+
+                                    <h1 class="text-gray-900 text-4xl font-bold mb-8">
+                                        Meet the Team
+                                    </h1>
+                                    <p class="text-gray-700 text-lg font-light">Dibuat oleh manusia manusia halu
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="flex flex-wrap justify-center">
+
+
+                                <div class="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4">
+                                    <div class="flex flex-col">
+                                        <a href="#" class="mx-auto">
+                                            <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
+                                                src="{{ url_for('static', filename='assets/img/Satria2.png') }}">
+                                        </a>
+                                        <div class="text-center mt-6">
+
+                                            <h1 class="text-gray-900 text-xl font-bold mb-1">
+                                                Satria Nur Saputro
+                                            </h1>
+
+
+                                            <div class="text-gray-700 font-light mb-2">
+                                                Backend
+                                            </div>
+
+
+                                            <div
+                                                class="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity duration-300">
+
+                                                <a href="https://www.linkedin.com/in/satrianursaputro/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                                    <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
+                                                </a>
+
+                                                <a href="https://www.instagram.com/satrianursaputro/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                                    <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4">
+                                    <div class="flex flex-col">
+                                        <a href="#" class="mx-auto">
+                                            <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
+                                                src="{{ url_for('static', filename='assets/img/Widi.jpeg') }}">
+                                        </a>
+                                        <div class="text-center mt-6">
+
+                                            <h1 class="text-gray-900 text-xl font-bold mb-1">
+                                                Widi Afandi
+                                            </h1>
+
+
+                                            <div class="text-gray-700 font-light mb-2">
+                                                Project Leader
+                                            </div>
+
+
+                                            <div class="flex items-center justify-center opacity-50 hover:opacity-100
+                                transition-opacity duration-300">
+
+                                                <a href="https://www.linkedin.com/in/widi-afandi-9347211b6/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                                    <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
+                                                </a>
+
+                                                <a href="https://www.instagram.com/fandi___57/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                                    <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4">
+                                    <div class="flex flex-col">
+                                        <a href="#" class="mx-auto">
+                                            <img class="rounded-2xl drop-shadow-md hover:drop-shadow-xl transition-all duration-200 delay-100 h-[345px] w-96"
+                                                src="{{ url_for('static', filename='assets/img/iqbal.jpg') }}">
+                                        </a>
+                                        <div class="text-center mt-6">
+
+                                            <h1 class="text-gray-900 text-xl font-bold mb-1">
+                                                Muhammmad Iqbal Ainu Rafie
+                                            </h1>
+
+
+                                            <div class="text-gray-700 font-light mb-2">
+                                                Frontend
+                                            </div>
+
+
+                                            <div class="flex items-center justify-center opacity-50 hover:opacity-100
+                                transition-opacity duration-300">
+
+                                                <a href="https://www.linkedin.com/in/ainurafie/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                                    <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
+                                                </a>
+
+                                                <a href="https://www.instagram.com/ainurafie/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                                    <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="bg-white  border-t">
+            <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
+                <nav class="flex flex-wrap justify-center -mx-5 -my-2">
+                    <div class="px-5 py-2">
+                        <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Home
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#dataset" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Dataset
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#result" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Result
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#upload" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Upload Image
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#team" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Team
+                        </a>
+                    </div>
+
+                </nav>
+                <div class="flex justify-center mt-8 space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Dribbble</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="mt-8 text-base leading-6 text-center text-gray-400">
+                    © 2023, Kelompok 5. All rights reserved.
+                </p>
+            </div>
+        </section>
+
+
+
+        <script>
+            const td = performance.now() - window.splashscreen_t0;
+            const w = window.innerWidth;
+            const h = window.innerHeigh;
+
+            let delta = td % 1000 - 1000;
+            let newHeight = 200;
+
+            if (w < h) {
+                newHeight = "340vw";
+            } else {
+                newHeight = "860vh";
+            }
+
+            setTimeout(() => {
+                const circle = document.getElementById("TransparentCircle");
+                const ball = document.getElementById("Ball").remove();
+                circle.style.height = newHeight;
+
+                setTimeout(() => {
+                    document.getElementById("splashing").remove();
+                }, 1800);
+            }, 500 - delta);
+
+        </script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #f6f6f6;
+                color: #444;
+                font-family: 'Roboto', sans-serif;
+                font-size: 16px;
+                line-height: 1;
+            }
+
+            .container {
+                max-width: 1100px;
+                padding: 0 20px;
+                margin: 0 auto;
+            }
+
+            .panel {
+                margin: 100px auto 40px;
+                max-width: 500px;
+                text-align: center;
+            }
+
+            .button_outer {
+                background: #83ccd3;
+                border-radius: 30px;
+                text-align: center;
+                height: 50px;
+                width: 200px;
+                display: inline-block;
+                transition: .2s;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn_upload {
+                padding: 17px 30px 12px;
+                color: #fff;
+                text-align: center;
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                z-index: 3;
+                white-space: nowrap;
+            }
+
+            .btn_upload input {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 105%;
+                cursor: pointer;
+                opacity: 0;
+            }
+
+            .file_uploading {
+                width: 100%;
+                height: 10px;
+                margin-top: 20px;
+                background: #ccc;
+            }
+
+            .file_uploading .btn_upload {
+                display: none;
+            }
+
+            .processing_bar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 0;
+                height: 100%;
+                border-radius: 30px;
+                background: #83ccd3;
+                transition: 3s;
+            }
+
+            .file_uploading .processing_bar {
+                width: 100%;
+            }
+
+            .success_box {
+                display: none;
+                width: 50px;
+                height: 50px;
+                position: relative;
+            }
+
+            .success_box:before {
+                content: '';
+                display: block;
+                width: 9px;
+                height: 18px;
+                border-bottom: 6px solid #fff;
+                border-right: 6px solid #fff;
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                position: absolute;
+                left: 17px;
+                top: 10px;
+            }
+
+            .file_uploaded .success_box {
+                display: inline-block;
+            }
+
+            .file_uploaded {
+                margin-top: 0;
+                width: 50px;
+                background: #83ccd3;
+                height: 50px;
+            }
+
+            .uploaded_file_view {
+                max-width: 300px;
+                margin: 40px auto;
+                text-align: center;
+                position: relative;
+                transition: .2s;
+                opacity: 0;
+                border: 2px solid #ddd;
+                padding: 15px;
+            }
+
+            .file_remove {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: block;
+                position: absolute;
+                background: #aaa;
+                line-height: 30px;
+                color: #fff;
+                font-size: 12px;
+                cursor: pointer;
+                right: -15px;
+                top: -15px;
+            }
+
+            .file_remove:hover {
+                background: #222;
+                transition: .2s;
+            }
+
+            .uploaded_file_view img {
+                max-width: 100%;
+            }
+
+            .uploaded_file_view.show {
+                opacity: 1;
+            }
+
+            .error_msg {
+                text-align: center;
+                color: #f00
+            }
+        </style>
+        <script>
+            var btnUpload = $("#upload_file"),
+                btnOuter = $(".button_outer");
+            btnUpload.on("change", function (e) {
+                var ext = btnUpload.val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                    $(".error_msg").text("Not an Image...");
+                } else {
+                    $(".error_msg").text("");
+                    btnOuter.addClass("file_uploading");
+                    setTimeout(function () {
+                        btnOuter.addClass("file_uploaded");
+                    }, 3000);
+                    var uploadedFile = URL.createObjectURL(e.target.files[0]);
+                    setTimeout(function () {
+                        $("#uploaded_view").append('<img src="' + uploadedFile + '" />').addClass("show");
+                    }, 3500);
+                }
+            });
+            $(".file_remove").on("click", function (e) {
+                $("#uploaded_view").removeClass("show");
+                $("#uploaded_view").find("img").remove();
+                btnOuter.removeClass("file_uploading");
+                btnOuter.removeClass("file_uploaded");
+            });
+        </script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+        <script>
+            const mobile_icon = document.getElementById('mobile-icon');
+            const mobile_menu = document.getElementById('mobile-menu');
+            const hamburger_icon = document.querySelector("#mobile-icon i");
+
+            function openCloseMenu() {
+                mobile_menu.classList.toggle('block');
+                mobile_menu.classList.toggle('active');
+            }
+
+            function changeIcon(icon) {
+                icon.classList.toggle("fa-xmark");
+            }
+
+            mobile_icon.addEventListener('click', openCloseMenu);
+        </script>
+</body>
+
+</html>
