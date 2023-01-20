@@ -287,8 +287,8 @@
             </div>
         </div>
         <div id="dataset" class="bg-[#47BA47]/30  h-96">
-            <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10"> Using Efficient3V with more
-                than 5000+ data
+            <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10"> Using EfficientnetB3 with more
+                than 1000+ data for
                 training</h1>
             <div class="h-72 flex items-center flex-wrap justify-center gap-10">
                 <div class="flex flex-col justify-center ">
@@ -314,20 +314,11 @@
                 result</h1>
             <div class="grid grid-cols-12">
                 <div class="col-span-4 flex items-center">
-                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="w-full rounded-lg" alt="">
+                    <img src="{{ url_for('static', filename='img/result/NF_D0.2.jpg') }}" class="w-full rounded-lg" alt="">
                 </div>
                 <div class="md:col-span-6 col-span-8 h-full flex flex-col justify-center  md:x  px-10">
                     <h1 class="md:text-7xl text-xl font-bold text-start text-[#47BA47]">More than 80% accuracy</h1>
-                    <h1 class="md:text-2xl text-base py-4 text-start text-[#265A1F] font-semibold">Efficient3V get more than 80% accuracy in training data and testing data.</h1>
-                </div>
-            </div>
-            <div class="grid grid-cols-12 w-full justify-end flex">
-                <div class="md:col-span-6 col-span-8 h-full flex flex-col justify-center  md:x  px-10">
-                    <h1 class="md:text-7xl text-xl font-bold text-start text-[#47BA47]">Less than 50% loss data</h1>
-                    <h1 class="md:text-2xl text-base py-4 text-start text-[#265A1F] font-semibold"> Efficient3V get less than 50% data loss in training data and testing data.</h1>
-                </div>
-                <div class="md:col-span-6 col-span-4 flex justify-end items-center">
-                    <img src="{{ url_for('static', filename='assets/img/logo.jpeg') }}" class="w-3/4 rounded-lg" alt="">
+                    <h1 class="md:text-2xl text-base py-4 text-start text-[#265A1F] font-semibold">EfficientnetB3 get more than 80% accuracy in training data and testing data.</h1>
                 </div>
             </div>
         </div>
@@ -356,22 +347,32 @@
                 </div>
             </main>
             {% if result %}
-                <!-- MODIFY HERE IQBAL -->
-                <!-- image -->
-                <img src="{{ result['path_img'] }}">
-                <!-- class data-->
-                {{ result['class'] }} <br>
+    <h1 class="md:text-5xl text-2xl text-center font-bold text-[#265A1F] pt-10">Result</h1>
+    <!-- image -->
+    <div class="flex justify-between px-20 pb-20">
+        <img src="{{ result['path_img'] }}" class="w-96 h-96 rounded-xl">
+        <!-- class data-->
+        <div class="px-10 flex flex-col justify-center">
+            <div class="">
+                <h1 class="text-[#265A1F] font-semibold text-lg">Disiase : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                    result['class'] }}</h1>
+                </div>
                 <!-- score -->
-                {{ result['score'] }} <br>
-                <!-- explain -->
-                {{ result['desc']['explain'] }} <br>
-                <!-- solution -->
-                <!-- BENTUKNYA LIST JADI PAKE FOR JANGAN DIRUBAH -->
-                {% for i in result['desc']['solution'] %}
-                    - {{ i }} <br>
-                {% endfor %}
-            {% endif %}
-        </div>
+                <h1 class="text-[#265A1F] font-semibold text-lg">Score : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                    result['score'] }}</h1>
+                    <!-- explain -->
+                    <h1 class="text-[#265A1F] font-semibold text-lg">Description : <h1 class="font-normal text-[#265A1F]"></h1> {{
+                        result['desc']['explain'] }}</h1>
+                        <!-- solution -->
+                        <h1 class="text-[#265A1F] font-semibold text-lg">Description : <h1 class="font-normal text-[#265A1F]"></h1> {%
+                            for i in result['desc']['solution'] %}
+                            - {{ i }} <br>
+                            {% endfor %}
+                            {% endif %}</h1>
+                            
+                        </div>
+                    </div>
+    </div>
         <div id="team" class="">
             <div class="flex items-center justify-center min-h-screen bg-white py-10">
                 <div class="flex flex-col">

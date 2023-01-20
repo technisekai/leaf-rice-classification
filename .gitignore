@@ -1,1 +1,3 @@
 model/NF_batch_size4_D0.2_save.h5
+model/__pycache__
+static/test_image/*
