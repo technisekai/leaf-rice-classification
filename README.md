@@ -73,5 +73,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For inquiries or feedback, please contact:
-1. [widiafandi58@gmail.com](mailto:widiafandi58@gmail.com)
-2. [satrianursaputro06@gmail.com](mailto:satrianursaputro06@gmail.com)
+- Widi Afandi: [widiafandi58@gmail.com](mailto:widiafandi58@gmail.com)
+- Satria Nur Saputro: [satrianursaputro06@gmail.com](mailto:satrianursaputro06@gmail.com)
